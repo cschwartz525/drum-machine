@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { Action, ActionTypes } from '../actions';
-import { Beat, State, Track } from '../state';
+import { State } from '../state';
+import { Beat, Track } from '../types';
 
 export default (state: State, action: Action): State => {
     switch (action.type) {

@@ -1,12 +1,4 @@
-export type Beat = {
-    isEnabled: boolean;
-};
-
-export type Track = {
-    beats: Beat[];
-    filename: string;
-    id: string;
-};
+import { Track } from '../types';
 
 export type State = {
     bpm: number;
