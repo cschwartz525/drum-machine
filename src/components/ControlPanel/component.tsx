@@ -1,7 +1,6 @@
-import React, { memo, ChangeEvent } from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
-import playIcon from '../../images/play.svg';
-import plusIcon from '../../images/plus.svg';
+import { AddTrackButton, PlayStopButton } from './components';
 
 const Wrapper = styled.div`
     background: linear-gradient(#ccc, #999);
@@ -29,38 +28,18 @@ const BPMWrapper = styled.div`
     }
 `;
 
-const PlayStopButton = styled.button`
-    background: url(${playIcon});
-    background-color: #fff;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 30%;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-    height: 40px;
-    width: 80px;
-`;
-
-const AddTrackButton = styled.button`
-    background: url(${plusIcon});
-    background-color: #fff;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-    height: 40px;
-    width: 40px;
-`;
-
 const ControlPanel = ({
     bpm,
-    setBpm
+    isPlaying,
+    play,
+    setBpm,
+    stop
 }: {
     bpm: number,
-    setBpm: (bpm: number) => void
+    isPlaying: boolean,
+    play: () => void,
+    setBpm: (bpm: number) => void,
+    stop: () => void
 }): JSX.Element => (
     <Wrapper>
         <BPMWrapper>
@@ -78,6 +57,8 @@ const ControlPanel = ({
             ></input>
         </BPMWrapper>
         <PlayStopButton
+            isPlaying={isPlaying}
+            onClick={isPlaying ? stop : play}
             title='Play'
         />
         <AddTrackButton

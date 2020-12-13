@@ -4,6 +4,9 @@ import { State } from '../state';
 export default (state: State, action: Action): State => {
     switch (action.type) {
 
+    case ActionTypes.PLAY:
+        return { ...state, isPlaying: true };
+
     case ActionTypes.SET_BPM:
         const {
             payload: {
@@ -20,6 +23,9 @@ export default (state: State, action: Action): State => {
         } else {
             return { ...state, bpm };
         }
+
+    case ActionTypes.STOP:
+        return { ...state, isPlaying: false };
 
     default:
         return state;
