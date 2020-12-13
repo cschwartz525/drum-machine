@@ -11,12 +11,32 @@ const Wrapper = styled.div`
     padding: 20px;
 `;
 
+const BPMWrapper = styled.div`
+    align-items: center;
+    display: flex;
+    height: 40px;
+
+    label {
+        font-size: 24px;
+        margin-right: 8px;
+    }
+
+    input {
+        border: none;
+        border-radius: 2px;
+        font-size: 24px;
+        height: 100%;
+    }
+`;
+
 const PlayStopButton = styled.button`
     background: url(${playIcon});
     background-color: #fff;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 30%;
+    border: none;
+    border-radius: 2px;
     cursor: pointer;
     height: 40px;
     width: 80px;
@@ -28,6 +48,8 @@ const AddTrackButton = styled.button`
     background-position: center;
     background-repeat: no-repeat;
     background-size: 60%;
+    border: none;
+    border-radius: 2px;
     cursor: pointer;
     height: 40px;
     width: 40px;
@@ -35,12 +57,15 @@ const AddTrackButton = styled.button`
 
 const ControlPanel = (): JSX.Element => (
     <Wrapper>
-        <input
-            max='200'
-            min='1'
-            name='bpm'
-            type='number'
-        ></input>
+        <BPMWrapper>
+            <label>BPM</label>
+            <input
+                max='200'
+                min='1'
+                name='bpm'
+                type='number'
+            ></input>
+        </BPMWrapper>
         <PlayStopButton
             title='Play'
         />
