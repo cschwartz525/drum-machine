@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { Action, play, setBpm, stop } from '../../redux/actions';
+import { Action, addTrack, play, setBpm, stop } from '../../redux/actions';
 import { State } from '../../redux/state';
 import ControlPanel from './component';
 
@@ -10,6 +10,9 @@ const mapStateToProps = (state: State) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
+    addTrack: (): void => {
+        dispatch(addTrack());
+    },
     play: (): void => {
         dispatch(play());
     },

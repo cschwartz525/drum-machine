@@ -1,0 +1,39 @@
+import React, { memo } from 'react';
+import styled from 'styled-components';
+import { Beat } from '../../redux/types';
+
+interface SquareProps {
+    isEnabled: boolean;
+}
+
+const Square = styled.button<SquareProps>`
+    background: ${({ isEnabled }) => (isEnabled ? '#bb0000' : '#888888')};
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    margin: 5px;
+    width: 40px;
+
+    &:hover {
+        background: ${({ isEnabled }) => (isEnabled ? 'linear-gradient(#bb0000, #880000);' : 'linear-gradient(#888888, #555555);')};
+    }
+`;
+
+const BeatSquare = ({
+    beat,
+    index,
+    toggleBeat,
+    trackId
+}: {
+    beat: Beat,
+    index: number,
+    toggleBeat: (index: number, trackId: string) => void,
+    trackId: string
+}): JSX.Element => (
+    <Square
+        isEnabled={beat?.isEnabled}
+        onClick={(): void => toggleBeat(index, trackId)}
+    />
+);
+
+export default memo(BeatSquare);

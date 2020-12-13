@@ -29,12 +29,14 @@ const BPMWrapper = styled.div`
 `;
 
 const ControlPanel = ({
+    addTrack,
     bpm,
     isPlaying,
     play,
     setBpm,
     stop
 }: {
+    addTrack: () => void,
     bpm: number,
     isPlaying: boolean,
     play: () => void,
@@ -62,6 +64,7 @@ const ControlPanel = ({
             title='Play'
         />
         <AddTrackButton
+            onClick={addTrack}
             title='Add Track'
         />
     </Wrapper>
