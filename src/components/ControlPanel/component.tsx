@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import playIcon from '../../images/play.svg';
 import plusIcon from '../../images/plus.svg';
@@ -55,7 +55,13 @@ const AddTrackButton = styled.button`
     width: 40px;
 `;
 
-const ControlPanel = (): JSX.Element => (
+const ControlPanel = ({
+    bpm,
+    setBpm
+}: {
+    bpm: number,
+    setBpm: (bpm: number) => void
+}): JSX.Element => (
     <Wrapper>
         <BPMWrapper>
             <label>BPM</label>
@@ -63,7 +69,12 @@ const ControlPanel = (): JSX.Element => (
                 max='200'
                 min='1'
                 name='bpm'
+                onChange={(e): void => {
+                    const bpm: number = parseInt(e.target.value);
+                    setBpm(bpm);
+                }}
                 type='number'
+                value={bpm}
             ></input>
         </BPMWrapper>
         <PlayStopButton
