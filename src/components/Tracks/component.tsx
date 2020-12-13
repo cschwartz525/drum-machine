@@ -11,14 +11,10 @@ const Tracks = ({
     tracks
 }: {
     tracks: Track[]
-}): JSX.Element => {
-    const trackRows = tracks.map(({ id }) => <TrackRow id={id} key={id} />);
-
-    return (
-        <Wrapper>
-            {trackRows}
-        </Wrapper>
-    );
-};
+}): JSX.Element => (
+    <Wrapper>
+        {tracks.map(({ id }) => <TrackRow id={id} key={id} />)}
+    </Wrapper>
+);
 
 export default memo(Tracks);

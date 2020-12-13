@@ -8,7 +8,8 @@ export const ActionTypes = {
     DELETE_TRACK: 'DELETE_TRACK',
     PLAY: 'PLAY',
     SET_BPM: 'SET_BPM',
-    STOP: 'STOP'
+    STOP: 'STOP',
+    TOGGLE_BEAT: 'TOGGLE_BEAT'
 };
 
 export const addTrack = (): Action => ({
@@ -31,4 +32,9 @@ export const setBpm = (bpm: number): Action => ({
 
 export const stop = (): Action => ({
     type: ActionTypes.STOP
+});
+
+export const toggleBeat = (index: number, trackId: string): Action => ({
+    type: ActionTypes.TOGGLE_BEAT,
+    payload: { index, trackId }
 });

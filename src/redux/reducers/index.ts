@@ -1,30 +1,30 @@
-import { stat } from 'fs';
+import { produce } from 'immer';
 import { v4 as uuid } from 'uuid';
 import { Action, ActionTypes } from '../actions';
 import { State } from '../state';
-import { Beat, Track } from '../types';
+import { Track } from '../types';
 
 export default (state: State, action: Action): State => {
     switch (action.type) {
 
     case ActionTypes.ADD_TRACK:
         const newTrack: Track = { beats: [], filename: '', id: uuid() }
-        const newBeat: Beat = { isEnabled: false };
         for (let i = 0; i < 16; i++) {
-            newTrack.beats.push(newBeat);
+            newTrack.beats.push({ isEnabled: false });
         }
-        return { ...state, tracks: [...state.tracks, newTrack] };
+        return produce(state, draft => {
+            draft.tracks.push(newTrack)
+        });
 
     case ActionTypes.DELETE_TRACK:
-        const {
-            payload: {
-                trackId
-            } = {}
-        } = action;
-        return { ...state, tracks: state.tracks.filter(track => track.id !== trackId) };
+        return produce(state, draft => {
+            draft.tracks = draft.tracks.filter(track => track.id !== action?.payload?.trackId);
+        });
 
     case ActionTypes.PLAY:
-        return { ...state, isPlaying: true };
+        return produce(state, draft => {
+            draft.isPlaying = true;
+        });
 
     case ActionTypes.SET_BPM:
         const {
@@ -36,15 +36,38 @@ export default (state: State, action: Action): State => {
         if (Number.isNaN(bpm)) {
             return state;
         } else if (bpm > 200) {
-            return { ...state, bpm: 200 };
+            return produce(state, draft => {
+                draft.bpm = 200;
+            });
         } else if (bpm < 1) {
-            return { ...state, bpm: 1 }
+            return produce(state, draft => {
+                draft.bpm = 1;
+            });
         } else {
-            return { ...state, bpm };
+            return produce(state, draft => {
+                draft.bpm = bpm;
+            });
         }
 
     case ActionTypes.STOP:
-        return { ...state, isPlaying: false };
+        return produce(state, draft => {
+            draft.isPlaying = false;
+        });
+
+    case ActionTypes.TOGGLE_BEAT:
+        const newState = produce(state, draft => {
+            const track = draft.tracks.find(track => track?.id === action?.payload?.trackId);
+
+            if (track) {
+                const beat = track?.beats[action?.payload?.index];
+
+                if (beat) {
+                    beat.isEnabled = !beat?.isEnabled;
+                }
+            }
+        });
+
+        return newState;
 
     default:
         return state;
