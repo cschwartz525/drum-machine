@@ -1,3 +1,4 @@
+import { stat } from 'fs';
 import { v4 as uuid } from 'uuid';
 import { Action, ActionTypes } from '../actions';
 import { State } from '../state';
@@ -12,8 +13,7 @@ export default (state: State, action: Action): State => {
         for (let i = 0; i < 16; i++) {
             newTrack.beats.push(newBeat);
         }
-        state.tracks.push(newTrack);
-        return state;
+        return { ...state, tracks: [...state.tracks, newTrack] };
 
     case ActionTypes.DELETE_TRACK:
         const {
@@ -21,8 +21,7 @@ export default (state: State, action: Action): State => {
                 trackId
             } = {}
         } = action;
-        state.tracks = state.tracks.filter(track => track.id !== trackId);
-        return state;
+        return { ...state, tracks: state.tracks.filter(track => track.id !== trackId) };
 
     case ActionTypes.PLAY:
         return { ...state, isPlaying: true };

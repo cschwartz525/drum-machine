@@ -6,7 +6,7 @@ import TrackRow from './component';
 
 const mapStateToProps = (state: State, props: { id: string }) => {
     const { id } = props;
-    const track = state.tracks.find(t => t.id = id);
+    const track = state.tracks.find(t => t.id === id);
 
     return { track };
 };
