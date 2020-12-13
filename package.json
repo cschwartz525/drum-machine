@@ -22,7 +22,8 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -40,6 +41,7 @@
     "@types/redux": "^3.6.0",
     "@types/redux-logger": "^3.0.8",
     "@types/styled-components": "^5.1.5",
+    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.9.1",
     "@typescript-eslint/parser": "^4.9.1",
     "babel-loader": "^8.2.2",
