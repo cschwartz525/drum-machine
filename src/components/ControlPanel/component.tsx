@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import playIcon from '../../images/play.svg';
+import plusIcon from '../../images/plus.svg';
 
 const Wrapper = styled.div`
     background: linear-gradient(#ccc, #999);
@@ -16,8 +17,20 @@ const PlayStopButton = styled.button`
     background-position: center;
     background-repeat: no-repeat;
     background-size: 30%;
+    cursor: pointer;
     height: 40px;
     width: 80px;
+`;
+
+const AddTrackButton = styled.button`
+    background: url(${plusIcon});
+    background-color: #fff;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
 `;
 
 const ControlPanel = (): JSX.Element => (
@@ -28,8 +41,12 @@ const ControlPanel = (): JSX.Element => (
             name='bpm'
             type='number'
         ></input>
-        <PlayStopButton />
-        <button>Add Track</button>
+        <PlayStopButton
+            title='Play'
+        />
+        <AddTrackButton
+            title='Add Track'
+        />
     </Wrapper>
 );
 
