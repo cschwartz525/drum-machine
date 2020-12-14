@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import BeatSquare from '../BeatSquare';
-import { Track } from '../../redux/types';
+import { TrackRowProps } from './index.d';
 
 const Wrapper = styled.div`
     border-bottom: 1px solid #000000;
@@ -22,13 +22,7 @@ const BeatsWrapper = styled.div`
     padding: 0 5px;
 `;
 
-const TrackRow = ({
-    deleteTrack,
-    track
-}: {
-    deleteTrack: (trackId: string) => void,
-    track: Track
-}): JSX.Element => (
+const TrackRow = ({ deleteTrack, track }: TrackRowProps.Root): JSX.Element => (
     <Wrapper>
         <DeleteTrackButton
             onClick={(): void => deleteTrack(track?.id)}

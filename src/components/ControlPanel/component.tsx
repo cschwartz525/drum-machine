@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import { AddTrackButton, PlayStopButton } from './components';
+import { ControlPanelProps } from './index.d';
 
 const Wrapper = styled.div`
     background: linear-gradient(#ccc, #999);
@@ -35,14 +36,7 @@ const ControlPanel = ({
     play,
     setBpm,
     stop
-}: {
-    addTrack: () => void,
-    bpm: number,
-    isPlaying: boolean,
-    play: () => void,
-    setBpm: (bpm: number) => void,
-    stop: () => void
-}): JSX.Element => (
+}: ControlPanelProps.Root): JSX.Element => (
     <Wrapper>
         <BPMWrapper>
             <label>BPM</label>
