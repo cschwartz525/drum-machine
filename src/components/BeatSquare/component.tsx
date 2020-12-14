@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
-import { Beat } from '../../redux/types';
+import { BeatSquareProps } from './index.d';
 
 interface SquareProps {
     isEnabled: boolean;
@@ -24,12 +24,7 @@ const BeatSquare = ({
     index,
     toggleBeat,
     trackId
-}: {
-    beat: Beat,
-    index: number,
-    toggleBeat: (index: number, trackId: string) => void,
-    trackId: string
-}): JSX.Element => (
+}: BeatSquareProps.Root): JSX.Element => (
     <Square
         isEnabled={beat?.isEnabled}
         onClick={(): void => toggleBeat(index, trackId)}

@@ -3,8 +3,9 @@ import { Dispatch } from 'redux';
 import { Action, toggleBeat } from '../../redux/actions';
 import { State } from '../../redux/state';
 import BeatSquare from './component';
+import { BeatSquareProps } from './index.d';
 
-const mapStateToProps = (state: State, props: { index: number, trackId: string }) => {
+const mapStateToProps = (state: State, props: BeatSquareProps.PassedProps): BeatSquareProps.StateProps => {
     const { index, trackId } = props;
     const track = state.tracks.find(t => t.id === trackId);
     const beat = track.beats[index];
@@ -12,7 +13,7 @@ const mapStateToProps = (state: State, props: { index: number, trackId: string }
     return { beat };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<Action>): BeatSquareProps.DispatchProps => ({
     toggleBeat: (index: number, trackId: string): void => {
         dispatch(toggleBeat(index, trackId));
     }
