@@ -8,6 +8,7 @@ export const ActionTypes = {
     DELETE_TRACK: 'DELETE_TRACK',
     PLAY: 'PLAY',
     SET_BPM: 'SET_BPM',
+    SET_SAMPLE: 'SET_SAMPLE',
     STOP: 'STOP',
     TOGGLE_BEAT: 'TOGGLE_BEAT'
 };
@@ -28,6 +29,11 @@ export const play = (): Action => ({
 export const setBpm = (bpm: number): Action => ({
     type: ActionTypes.SET_BPM,
     payload: { bpm }
+});
+
+export const setSample = (trackId: string, sampleId: string): Action => ({
+    type: ActionTypes.SET_SAMPLE,
+    payload: { sampleId, trackId }
 });
 
 export const stop = (): Action => ({

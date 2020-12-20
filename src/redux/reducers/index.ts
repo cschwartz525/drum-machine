@@ -3,12 +3,13 @@ import { v4 as uuid } from 'uuid';
 import { Action, ActionTypes } from '../actions';
 import { State } from '../state';
 import { Track } from '../types';
+import { getFlattenedSamplesMap } from '../../samples';
 
 export default (state: State, action: Action): State => {
     switch (action.type) {
 
     case ActionTypes.ADD_TRACK:
-        const newTrack: Track = { beats: [], filename: '', id: uuid() }
+        const newTrack: Track = { beats: [], filename: '', id: uuid(), sample: '' }
         for (let i = 0; i < 16; i++) {
             newTrack.beats.push({ isEnabled: false });
         }
@@ -48,6 +49,18 @@ export default (state: State, action: Action): State => {
                 draft.bpm = bpm;
             });
         }
+
+    case ActionTypes.SET_SAMPLE:
+        const flattenedSamplesMap = getFlattenedSamplesMap();
+
+        return produce(state, draft => {
+            const track = draft.tracks.find(track => track?.id === action?.payload?.trackId);
+            const sample = flattenedSamplesMap[action?.payload?.sampleId];
+
+            if (track && sample) {
+                track.sample = sample;
+            }
+        });
 
     case ActionTypes.STOP:
         return produce(state, draft => {
