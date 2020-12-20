@@ -12,6 +12,7 @@ const Wrapper = styled.div`
 const DeleteTrackButton = styled.button`
     cursor: pointer;
     margin: 5px 0;
+    width: 90px;
 `;
 
 const BeatsWrapper = styled.div`
@@ -27,7 +28,7 @@ const TrackRow = ({ deleteTrack, track }: TrackRowProps.Root): JSX.Element => (
         <DeleteTrackButton
             onClick={(): void => deleteTrack(track?.id)}
         >
-            Delete Track
+            Delete
         </DeleteTrackButton>
         <BeatsWrapper>
             {track.beats.map((beat, i) => (

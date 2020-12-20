@@ -10,9 +10,11 @@ const Square = styled.button<SquareProps>`
     background: ${({ isEnabled }) => (isEnabled ? '#bb0000' : '#888888')};
     border: none;
     cursor: pointer;
-    height: 40px;
+    height: 5vw;
     margin: 5px;
-    width: 40px;
+    min-height: 40px;
+    min-width: 40px;
+    width: 5vw;
 
     &:hover {
         background: ${({ isEnabled }) => (isEnabled ? 'linear-gradient(#bb0000, #880000);' : 'linear-gradient(#888888, #555555);')};
