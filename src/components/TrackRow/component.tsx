@@ -1,9 +1,12 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
+import Select from 'react-select'
 import styled from 'styled-components';
 import BeatSquare from '../BeatSquare';
 import { TrackRowProps } from './index.d';
+import { getSampleOptions, getSelectStyles } from './utils';
 
 const Wrapper = styled.div`
+    align-items: center;
     border-bottom: 1px solid #000000;
     border-top: 1px solid #000000;
     display: flex;
@@ -11,7 +14,9 @@ const Wrapper = styled.div`
 
 const DeleteTrackButton = styled.button`
     cursor: pointer;
+    min-height: 35px;
     margin: 5px 0;
+    width: 90px;
 `;
 
 const BeatsWrapper = styled.div`
@@ -22,12 +27,18 @@ const BeatsWrapper = styled.div`
     padding: 0 5px;
 `;
 
-const TrackRow = ({ deleteTrack, track }: TrackRowProps.Root): JSX.Element => (
+const TrackRow = ({ deleteTrack, setSample, track }: TrackRowProps.Root): JSX.Element => (
     <Wrapper>
+        <Select
+            onChange={(option): void => setSample(track?.id, option?.value)}
+            options={getSampleOptions()}
+            placeholder='Choose a sample...'
+            styles={getSelectStyles()}
+        />
         <DeleteTrackButton
             onClick={(): void => deleteTrack(track?.id)}
         >
-            Delete Track
+            Delete
         </DeleteTrackButton>
         <BeatsWrapper>
             {track.beats.map((beat, i) => (
@@ -40,5 +51,4 @@ const TrackRow = ({ deleteTrack, track }: TrackRowProps.Root): JSX.Element => (
         </BeatsWrapper>
     </Wrapper>
 );
-
 export default memo(TrackRow);
