@@ -50,6 +50,11 @@ export default (state: State, action: Action): State => {
             });
         }
 
+    case ActionTypes.SET_PLAYING_INDEX:
+        return produce(state, draft => {
+            draft.playingIndex = action?.payload?.index ?? null;
+        });
+
     case ActionTypes.SET_SAMPLE:
         const flattenedSamplesMap = getFlattenedSamplesMap();
 

@@ -8,6 +8,7 @@ export const ActionTypes = {
     DELETE_TRACK: 'DELETE_TRACK',
     PLAY: 'PLAY',
     SET_BPM: 'SET_BPM',
+    SET_PLAYING_INDEX: 'SET_PLAYING_INDEX',
     SET_SAMPLE: 'SET_SAMPLE',
     STOP: 'STOP',
     TOGGLE_BEAT: 'TOGGLE_BEAT'
@@ -30,6 +31,11 @@ export const setBpm = (bpm: number): Action => ({
     type: ActionTypes.SET_BPM,
     payload: { bpm }
 });
+
+export const setPlayingIndex = (index?: number): Action => ({
+    type: ActionTypes.SET_PLAYING_INDEX,
+    payload: { index }
+})
 
 export const setSample = (trackId: string, sampleId: string): Action => ({
     type: ActionTypes.SET_SAMPLE,
