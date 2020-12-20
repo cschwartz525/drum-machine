@@ -25,7 +25,7 @@ module.exports = [
                     }
                 },
                 {
-                    test: /\.(svg)$/i,
+                    test: /\.(svg|wav)$/i,
                     use: [
                         {
                             loader: 'file-loader'
