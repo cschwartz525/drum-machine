@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 import Select from 'react-select'
 import styled from 'styled-components';
 import BeatSquare from '../BeatSquare';
