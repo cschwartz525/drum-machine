@@ -4,10 +4,15 @@ import { BeatSquareProps } from './index.d';
 
 interface SquareProps {
     isEnabled: boolean;
+    isPlaying: boolean;
 }
 
 const Square = styled.button<SquareProps>`
-    background: ${({ isEnabled }) => (isEnabled ? '#bb0000' : '#888888')};
+    background: ${({ isEnabled, isPlaying }) => (
+        isEnabled
+            ? isPlaying ? '#ff4444' : '#bb0000'
+            : isPlaying ? '#cccccc' : '#888888'
+    )};
     border: none;
     cursor: pointer;
     height: 4vw;
@@ -24,11 +29,13 @@ const Square = styled.button<SquareProps>`
 const BeatSquare = ({
     beat,
     index,
+    playing,
     toggleBeat,
     trackId
 }: BeatSquareProps.Root): JSX.Element => (
     <Square
         isEnabled={beat?.isEnabled}
+        isPlaying={playing}
         onClick={(): void => toggleBeat(index, trackId)}
     />
 );

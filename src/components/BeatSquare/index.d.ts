@@ -9,6 +9,7 @@ export namespace BeatSquareProps {
 
     export type StateProps = {
         beat: Beat;
+        playing: boolean;
     };
 
     export type DispatchProps = {

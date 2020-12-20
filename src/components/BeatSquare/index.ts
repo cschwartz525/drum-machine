@@ -7,10 +7,12 @@ import { BeatSquareProps } from './index.d';
 
 const mapStateToProps = (state: State, props: BeatSquareProps.PassedProps): BeatSquareProps.StateProps => {
     const { index, trackId } = props;
+    const { playingIndex } = state;
     const track = state.tracks.find(t => t.id === trackId);
     const beat = track.beats[index];
+    const playing = playingIndex === index;
 
-    return { beat };
+    return { beat, playing };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>): BeatSquareProps.DispatchProps => ({

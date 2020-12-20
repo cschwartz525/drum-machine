@@ -1,5 +1,5 @@
 import { Dispatch, Middleware, MiddlewareAPI } from 'redux'
-import { Action, ActionTypes } from '../actions';
+import { Action, ActionTypes, setPlayingIndex } from '../actions';
 import { State } from '../state';
 
 let loop: number;
@@ -11,7 +11,7 @@ export const playbackMiddleware: Middleware = (
 ) => (
     action: Action
 ) => {
-    const { getState } = store;
+    const { dispatch, getState } = store;
 
     if (action.type === ActionTypes.PLAY) {
         const { bpm, tracks }: State = getState();
@@ -20,6 +20,8 @@ export const playbackMiddleware: Middleware = (
         let index = 0;
 
         loop = setInterval(() => {
+            dispatch(setPlayingIndex(index));
+
             tracks.forEach(track => {
                 const beat = track.beats[index];
                 if (beat.isEnabled) {
@@ -36,6 +38,7 @@ export const playbackMiddleware: Middleware = (
         }, interval);
     } else if (action.type === ActionTypes.STOP) {
         clearInterval(loop);
+        dispatch(setPlayingIndex());
     }
 
     return next(action);
