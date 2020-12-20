@@ -7,10 +7,10 @@ import { TrackRowProps } from './index.d';
 
 const mapStateToProps = (state: State, props: TrackRowProps.PassedProps): TrackRowProps.StateProps => {
     const { id } = props;
-    const { isPlaying, tracks } = state;
+    const { tracks } = state;
     const track = tracks.find(t => t.id === id);
 
-    return { isPlaying, track };
+    return { track };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>): TrackRowProps.DispatchProps => ({

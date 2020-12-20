@@ -7,7 +7,6 @@ export namespace TrackRowProps {
     };
 
     export type StateProps = {
-        isPlaying: boolean;
         track: Track;
     };
 

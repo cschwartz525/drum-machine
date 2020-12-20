@@ -27,40 +27,28 @@ const BeatsWrapper = styled.div`
     padding: 0 5px;
 `;
 
-const TrackRow = ({ deleteTrack, isPlaying, setSample, track }: TrackRowProps.Root): JSX.Element => {
-
-    // TODO: Implement looping
-    useEffect(() => {
-        if (isPlaying) {
-            const audio = new Audio(track?.sample);
-            audio.play();
-        }
-    }, [isPlaying, track]);
-
-    return (
-        <Wrapper>
-            <Select
-                onChange={(option): void => setSample(track?.id, option?.value)}
-                options={getSampleOptions()}
-                placeholder='Choose a sample...'
-                styles={getSelectStyles()}
-            />
-            <DeleteTrackButton
-                onClick={(): void => deleteTrack(track?.id)}
-            >
-                Delete
-            </DeleteTrackButton>
-            <BeatsWrapper>
-                {track.beats.map((beat, i) => (
-                    <BeatSquare
-                        index={i}
-                        key={`beat-${i}`}
-                        trackId={track?.id}
-                    />
-                ))}
-            </BeatsWrapper>
-        </Wrapper>
-    );
-
-};
+const TrackRow = ({ deleteTrack, setSample, track }: TrackRowProps.Root): JSX.Element => (
+    <Wrapper>
+        <Select
+            onChange={(option): void => setSample(track?.id, option?.value)}
+            options={getSampleOptions()}
+            placeholder='Choose a sample...'
+            styles={getSelectStyles()}
+        />
+        <DeleteTrackButton
+            onClick={(): void => deleteTrack(track?.id)}
+        >
+            Delete
+        </DeleteTrackButton>
+        <BeatsWrapper>
+            {track.beats.map((beat, i) => (
+                <BeatSquare
+                    index={i}
+                    key={`beat-${i}`}
+                    trackId={track?.id}
+                />
+            ))}
+        </BeatsWrapper>
+    </Wrapper>
+);
 export default memo(TrackRow);
