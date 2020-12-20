@@ -52,11 +52,11 @@ export const getSelectStyles = (): StylesConfig => ({
         ...provided,
         alignItems: 'center',
         display: 'flex',
+        fontFamily: 'sans-serif',
         margin: '5px 10px 5px 0'
     }),
     control: (provided) => ({
         ...provided,
-        fontFamily: 'sans-serif',
         minHeight: '30px',
         width: 200
     }),
