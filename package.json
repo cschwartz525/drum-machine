@@ -8,8 +8,8 @@
     "build-dev": "webpack --mode=development",
     "cover": "./node_modules/.bin/jest . --coverage",
     "lint": "./node_modules/.bin/eslint .",
-    "test": "./node_modules/.bin/jest .",
-    "web": "nodemon"
+    "start": "nodemon",
+    "test": "./node_modules/.bin/jest ."
   },
   "author": "Craig Schwartz <craigschwartz525@gmail.com>",
   "license": "ISC",
